@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { sampleThunkAction, sampleAction } from './actions/app'
 
-function App() {
+const App = props => {
+  // can use props.app, props.sampleThunkAction, etc.
+  props.sampleThunkAction()
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button type="button">Show Message</button>
+      <button type="button">Hide Message</button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default connect(
+  state => {
+    return {
+      app: state.app
+    }
+  },
+  dispatch => {
+    return bindActionCreators(
+      {
+        sampleThunkAction,
+        sampleAction
+      },
+      dispatch
+    )
+  }
+)(App)
