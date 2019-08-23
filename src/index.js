@@ -1,16 +1,22 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import App from './App'
-import configureStore from './store/configureStore'
 import * as serviceWorker from './serviceWorker'
+// add i18n
+import './i18n'
+// add redux store
+import configureStore from './store/configureStore'
+
+import App from './App'
 
 const store = configureStore()
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <Suspense fallback="Loading">
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Suspense>,
   document.getElementById('root')
 )
 

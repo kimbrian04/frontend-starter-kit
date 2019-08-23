@@ -1,11 +1,12 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+
 import { sampleThunkAction, sampleAction } from './actions/app'
 
 const App = props => {
-  // can use props.app, props.sampleThunkAction, etc.
-
+  const { t } = useTranslation('common') // specifying to use common namespace (common.json)
   return (
     <div className="App">
       <button type="button" onClick={() => props.sampleAction(true)}>
@@ -14,7 +15,7 @@ const App = props => {
       <button type="button" onClick={() => props.sampleAction(false)}>
         Hide Message
       </button>
-      {props.app.showSampleMessage && <p>{props.app.sampleMessage}</p>}
+      {props.app.showSampleMessage && <p>{t(props.app.sampleMessage)}</p>}
     </div>
   )
 }
