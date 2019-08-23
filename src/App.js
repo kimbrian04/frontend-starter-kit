@@ -5,12 +5,16 @@ import { sampleThunkAction, sampleAction } from './actions/app'
 
 const App = props => {
   // can use props.app, props.sampleThunkAction, etc.
-  props.sampleThunkAction()
 
   return (
     <div className="App">
-      <button type="button">Show Message</button>
-      <button type="button">Hide Message</button>
+      <button type="button" onClick={() => props.sampleAction(true)}>
+        Show Message
+      </button>
+      <button type="button" onClick={() => props.sampleAction(false)}>
+        Hide Message
+      </button>
+      {props.app.showSampleMessage && <p>{props.app.sampleMessage}</p>}
     </div>
   )
 }
